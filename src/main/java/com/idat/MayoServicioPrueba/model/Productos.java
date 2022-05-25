@@ -1,7 +1,21 @@
 package com.idat.MayoServicioPrueba.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/* Indicar que es un modelo de base de datos
+ Como hacer eso? Con la anotacion @Table(name = "nombreBD")
+*/
+@Table(name = "bdproductos")
+@Entity // Para indicar que es un modelo ENTIDAD - RELACION
 public class Productos {
+	
+	@Id
+	@GeneratedValue // Autogenerado 
 	private Integer idProducto;
+	//@Column(name = "NOMBRE") Si queremos cambiar el nombre de la column
 	private String nombreProducto;
 	private String descripcion;
 	private Double precio;

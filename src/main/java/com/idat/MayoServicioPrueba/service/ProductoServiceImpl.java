@@ -6,43 +6,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.idat.MayoServicioPrueba.model.Productos;
-import com.idat.MayoServicioPrueba.repository.ProductoRepositoryImpl;
+import com.idat.MayoServicioPrueba.repository.IProductoRepository;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
 	// Inyeccion de la capa Repository para tener acceso a sus metodos
 	@Autowired
-	private ProductoRepositoryImpl repository;
+	private IProductoRepository repository;
 	
 	@Override
 	public void guardarProducto(Productos producto) {
-		repository.guardarProducto(producto);
+		repository.save(producto);
 
 	}
 
 	@Override
 	public void actualizarProducto(Productos producto) {
-		repository.actualizarProducto(producto);
+		repository.saveAndFlush(producto);
 
 	}
 
 	@Override
 	public void eliminarProducto(Integer id) {
-		repository.eliminarProducto(id);
+		repository.deleteById(id);
 
 	}
 
 	@Override
 	public List<Productos> listarProductos() {
-		repository.listarProductos();
-		return null;
+		return repository.findAll();
 	}
 
 	@Override
 	public Productos obtenerProductoId(Integer id) {
-		repository.obtenerProductoId(id);
-		return null;
+		return repository.findById(id).orElse(null);
 	}
-
+	//Metodos: save, getById, deleteById son elementos de JPA para la Bd.
 }
