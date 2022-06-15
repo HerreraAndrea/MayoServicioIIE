@@ -1,64 +1,57 @@
 package com.idat.MayoServicioPrueba.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name = "bditem")
+
 @Entity
+@Table(name = "Items")
 public class Item {
 	@Id
-	@GeneratedValue // Autogenerado 
+	@GeneratedValue 
 	private Integer idItem;
-	//@Column(name = "NOMBRE") Si queremos cambiar el nombre de la column
 	private String item;
 	private Integer cantidad;
-	private Integer total;
+	private Double total;
 	
-	public Item(Integer idItem, String item, Integer cantidad, Integer total) {
-		super();
-		this.idItem = idItem;
-		this.item = item;
-		this.cantidad = cantidad;
-		this.total = total;
-	}
-
-	public Item() {
-		super();
-	}
-
+	@ManyToOne //Muchos items a un Cliente
+	@JoinColumn(
+			name = "id_cliente",
+			nullable = false,
+			unique = true,
+			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_item) references Items(idItem))"))
+	private Cliente cliente;
+	
 	public Integer getIdItem() {
 		return idItem;
 	}
-
 	public void setIdItem(Integer idItem) {
 		this.idItem = idItem;
 	}
-
 	public String getItem() {
 		return item;
 	}
-
 	public void setItem(String item) {
 		this.item = item;
 	}
-
 	public Integer getCantidad() {
 		return cantidad;
 	}
-
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-
-	public Integer getTotal() {
+	public Double getTotal() {
 		return total;
 	}
-
-	public void setTotal(Integer total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
+	
 	
 
 }

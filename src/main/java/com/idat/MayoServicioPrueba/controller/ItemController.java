@@ -31,7 +31,7 @@ public class ItemController {
 	@RequestMapping(path = "/guardar", method = RequestMethod.POST)
 	public ResponseEntity<Void> guardarItem(@RequestBody Item items) {
 		service.guardarItem(items);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);// Create, Ok, No_content son mensajes que devuelva
+		return new ResponseEntity<Void>(HttpStatus.CREATED); // Mensajes de respuesta en Consola
 	}
 	
 	@RequestMapping(path = "/eliminar/{id}", method = RequestMethod.DELETE)
@@ -44,7 +44,7 @@ public class ItemController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);// Create, Ok, No_content son mensajes que devuelva
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);	// Mensajes de respuesta
 	}
 	@RequestMapping(path = "/actualizar", method = RequestMethod.PUT)
 	public ResponseEntity<Void> actualizarItem(@RequestBody Item item) {
@@ -56,7 +56,7 @@ public class ItemController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);// Create, Ok, No_content son mensajes que devuelva
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 	
 	
